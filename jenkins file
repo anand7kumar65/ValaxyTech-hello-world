@@ -14,21 +14,20 @@ pipeline{
 		stage('maven'){
 		     steps{
 		     sh "mvn clean package"
+		     sh "mv target/*.war target/myweb.war"
 		       }
 		     }
 		  stage('deploy'){
-		      steps{
-		      sshagent(['genesso']) {
-		      sh """
-			  scp ssh -o StrictHostKeyChecking=no target/*.war ubuntu@172.31.21.41:/opt/tomcat/webapps/
-			  ssh ubuntu@172.31.21.41 /opt/tomcat/bin/shutdown.sh
-			  ssh ubuntu@172.31.21.41 /opt/tomcat/bin/startup.sh
-			  
-			    """
+		        steps{
+		          sshagent(['genesso']) {
+		             sh """
+			       scp ssh -o StrictHostKeyChecking=no target/myweb.war ubuntu@172.31.21.41:/opt/tomcat/webapps/
+			       ssh ubuntu@172.31.21.41 /opt/tomcat/bin/shutdown.sh
+			       ssh ubuntu@172.31.21.41 /opt/tomcat/bin/startup.sh
+			       """
 			    }
 		      }
 		      
-		       
-		  }
+		   }
 	  }
 }
