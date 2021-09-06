@@ -1,5 +1,7 @@
 pipeline{
-   agent any
+   agent {
+       label 'flipkart'
+       }
    environment{
         PATH = "/opt/share/maven/bin:$PATH"
 	}
