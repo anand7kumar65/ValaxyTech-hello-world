@@ -2,11 +2,19 @@ pipeline{
    agent {
       label 'flipkart'
 	  }
+   environment{
+        PATH = "/opt/share/maven/bin:$PATH"
+	}
 	  stages{
 	       stage('checkout'){
 		      steps{
                     git 'https://github.com/anand7kumar65/ValaxyTech-hello-world.git'		
 			 }
 		   }
+		stage('maven'){
+		     steps{
+		     sh "mvn clean package"
+		       }
+		     }
 	  }
 }
