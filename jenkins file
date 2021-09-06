@@ -16,17 +16,16 @@ pipeline{
 		     sh "mvn clean package"
 		      }
 		     }
-		  stage('deploy'){
-		        steps{
-		          sshagent(['genesso']) {
-		             sh """
-			       scp ssh -o StrictHostKeyChecking=no target/*.war ubuntu@172.31.21.41:/opt/tomcat/webapps/
-			       ssh ubuntu@172.31.21.41 /opt/tomcat/bin/shutdown.sh
-			       ssh ubuntu@172.31.21.41 /opt/tomcat/bin/startup.sh
-			       """
-			    }
-		      }
-		      
+		   stage('deploy'){
+		      steps{
+		         sshagent(['genesso']) {
+			    sh """
+			    scp ssh -o StrictHostKeyChecking=no target/*.war ubuntu@172.31.21.41:/opt/tomcat/webapps/
+			    sh ubuntu@172.31.21.41 /opt/tomcat/bin/shutdown.sh/
+			    sh ubuntu@172.31.21.41 /opt/tomcat/bin/startup.sh/
+			    """
+                            }
+		         }
 		   }
 	  }
 }
