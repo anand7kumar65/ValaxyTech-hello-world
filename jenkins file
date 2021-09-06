@@ -20,9 +20,9 @@ pipeline{
 		      steps{
 		      sshagent(['tomcatdev']) {
                           sh """
-			  scp ssh -o StrictHostKeyChecking=no target/*.war ansadmin@172.31.21.41:/opt/tomcat/webapps/
-			  ssh ansadmin@172.31.21.41 /opt/tomcat/bin/shutdown.sh
-			  ssh ansadmin@172.31.21.41 /opt/tomcat/bin/startup.sh
+			  scp ssh -o StrictHostKeyChecking=no target/*.war ubuntu@172.31.21.41:/opt/tomcat/webapps/
+			  ssh ubuntu@172.31.21.41 /opt/tomcat/bin/shutdown.sh
+			  ssh ubuntu@172.31.21.41 /opt/tomcat/bin/startup.sh
 			  
 			    """
                                   }
