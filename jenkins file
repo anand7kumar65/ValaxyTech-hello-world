@@ -18,11 +18,11 @@ pipeline{
 		     }
 		   stage('deploy'){
 		      steps{
-		         sshagent(['anandubuntu']) {
+		         sshagent(['tomcatdev']) {
 			    sh """
-			    scp ssh -o StrictHostKeyChecking=no **/*.war ubuntu@172.31.21.41:/opt/tomcat/webapps/
-			    sh ubuntu@172.31.21.41 /opt/tomcat/bin/shutdown.sh/
-			    sh ubuntu@172.31.21.41 /opt/tomcat/bin/startup.sh/
+			    scp ssh -o StrictHostKeyChecking=no **/*.war ansadmin@172.31.21.41:/opt/tomcat/webapps/
+			    sh ansadmin@172.31.21.41 /opt/tomcat/bin/shutdown.sh/
+			    sh ansadmin@172.31.21.41 /opt/tomcat/bin/startup.sh/
 			    """
                             }
 		         }
