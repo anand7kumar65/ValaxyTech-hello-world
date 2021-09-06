@@ -1,0 +1,12 @@
+pipeline{
+   agent {
+      label 'flipkart'
+	  }
+	  stages ("checkout"){
+	       stage {
+		      steps{
+                    git 'https://github.com/anand7kumar65/ValaxyTech-hello-world.git'		
+						  }
+		   }
+	  }
+}
